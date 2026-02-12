@@ -1,15 +1,20 @@
 import React from "react";
 
 const Summary = ({ selectedParts }) => {
-  const totalPrice = selectedParts.reduce((sum, part) => sum + part.price, 0);
+  const partsList = Object.values(selectedParts).filter(p => p !== null);
+
+  const totalPrice = partsList.reduce((sum, part) => sum + part.price, 0);
+
   return (
     <div className="summary-card">
-      {selectedParts.map(selectedPart =>
-      <div> 
-        <p>{selectedPart.name} {selectedPart.price}$</p>
-      </div>
-      )}
-      <p className="total-price">Total Price: {totalPrice}$</p>
+      {partsList.map((part) => (
+        <div key={part.id}>
+          <p>
+            {part.name} <span className="price">${part.price}</span>
+          </p>
+        </div>
+      ))}
+      <p className="total-price">Total Price: ${totalPrice}</p>
     </div>
   );
 };

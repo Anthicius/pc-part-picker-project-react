@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 const Summary = ({ selectedParts }) => {
   const partsList = Object.values(selectedParts).filter(p => p !== null);
 
-  const totalPrice = partsList.reduce((sum, part) => sum + part.price, 0);
+const totalPrice = useMemo(() => 
+    partsList.reduce((sum, part) => sum + part.price, 0), 
+    [partsList]
+  );
 
   return (
     <div className="summary-card">

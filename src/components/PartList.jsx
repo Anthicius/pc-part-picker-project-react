@@ -1,7 +1,7 @@
 import React from "react";
 import PartCard from "./PartCard";
 
-const PartList = ({ category, parts, selectedPart, onSelectPart }) => {
+const PartList = ({ parts, category, onSelectPart, selectedPart }) => { 
   return (
     <div className="category-column">
       <h2>{category}</h2>
@@ -9,8 +9,9 @@ const PartList = ({ category, parts, selectedPart, onSelectPart }) => {
         <PartCard
           key={part.id}
           part={part}
+          category={category}
           isSelected={selectedPart && selectedPart.id === part.id}
-          onSelectPart={(p) => onSelectPart(p, category)}
+          onSelectPart={onSelectPart}
         />
       ))}
     </div>

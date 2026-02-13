@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { memo } from 'react';
 
-const PartCard = ({ part, onSelectPart, isSelected }) => {
+const PartCard = ({ part, category, onSelectPart, isSelected }) => {
   return (
     <div 
       className={`part-card ${isSelected ? 'selected' : ''}`} 
-      onClick={() => onSelectPart(part)}
+      onClick={() => onSelectPart(part, category)}
     >
       <div className="part-info">
+        {console.log("PartCard Rendered", part.name)} 
         <h3>{part.name}</h3>
         <p>Specs: {part.cores || part.vram || part.speed}</p>
       </div>
@@ -15,4 +16,4 @@ const PartCard = ({ part, onSelectPart, isSelected }) => {
   );
 }
 
-export default PartCard;
+export default memo(PartCard);

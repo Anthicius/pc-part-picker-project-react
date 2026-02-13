@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import ComputerParts from "./components/ComputerParts";
 import Header from "./components/Header";
 import Summary from "./components/Summary";
@@ -12,7 +12,7 @@ function App() {
     ram: null
   });
 
-  const handleSelectPart = (part, category) => {
+const handleSelectPart = useCallback((part, category) => {
     setSelectedParts((prev) => {
       const currentPart = prev[category];
       const isSamePart = currentPart && currentPart.id === part.id;
@@ -23,7 +23,7 @@ function App() {
         return { ...prev, [category]: part };
       }
     });
-  };
+  }, []);
 
   const handleThemeSwitch = () => {
     setTheme((prev) => (prev === "white" ? "dark" : "white"));
